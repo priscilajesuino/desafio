@@ -1,4 +1,10 @@
 <?php
+
+session_start();
+if (empty ($_SESSION)){
+  header("Location:login.php");exit;
+}
+
 //trazendo os dados do json
 $produto = file_get_contents('produtos.json');
 
@@ -70,7 +76,7 @@ file_put_contents('produtos.json' , $alterar);
           <textarea class="form-control" name="descricao" rows="10"><?php echo $produtodec[$posicao]["descricao"]; ?></textarea>
         </div>
         <div>
-            <img src="" alt="">
+            <img src="<?php echo $produtodec[$posicao]["foto"];?>" alt="">
         </div>
         <div class="custom-file">
           <input type="file" class="custom-file-input" id="customFile" name="file">

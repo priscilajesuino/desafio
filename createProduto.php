@@ -1,5 +1,10 @@
 <?php
 
+session_start();
+if (empty ($_SESSION)){
+  header("Location:login.php");exit;
+} 
+
 if ($_POST){
 
 $cadastrarproduto = $_POST;

@@ -1,4 +1,11 @@
 <?php
+
+session_start();
+if (empty($_SESSION)) {
+	header("Location:login.php");
+	exit;
+}
+
 //pegando os dados no json
 $usuario = file_get_contents('usuarios.json');
 
@@ -13,28 +20,23 @@ if ($_POST) {
 	$usuariodec[$posicao]["nome"] = $_POST["nome"];
 	$usuariodec[$posicao]["email"] = $_POST["email"];
 
-	if (!empty($posicao["senha"]) and !empty($posicao["confirmarsenha"])) {
+	if ($_POST["senha"]) {
 
 		
-			//fazendo um if para verificar a senha
-			if ($_posicao["senha"] != $_posicao["confirmasenha"]) {
-				echo "Confirmação de senha inválida";
-			} else {
-				$dadosusuario = array(
-					"nome" => $_POST["nome"],
-					"email" => $_POST["email"],
-					"senha" => password_hash($_POST["senha"], PASSWORD_DEFAULT)
-				);
-		$usuariodec[$posicao]["senha"] = $_POST["senha"];
-		$usuariodec[$posicao]["confirmasenha"] = $_POST["confirmasenha"];
+		//fazendo um if para verificar a senha
+		if ($_POST["senha"] != $_POST["confirmasenha"]) {
+			echo "Confirmação de senha inválida";
+		} else {
+			
+			$usuariodec[$posicao]["senha"] = password_hash($_POST["senha"], PASSWORD_DEFAULT);
+		}
 	}
+
+	//inserindo os dados alterados no json
+	$alterar = json_encode($usuariodec);
+
+	file_put_contents('usuarios.json', $alterar);
 }
-
-//inserindo os dados alterados no json
-$alterar = json_encode($usuariodec);
-
-file_put_contents('usuarios.json', $alterar);
-	}
 
 
 ?>

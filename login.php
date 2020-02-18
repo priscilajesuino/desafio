@@ -1,5 +1,9 @@
 <?php
 
+
+if ($_POST){
+
+	session_start();
 //pegando os dados no json
 $usuario = file_get_contents('usuarios.json');
 
@@ -9,11 +13,14 @@ $usuariodec = json_decode($usuario, true);
 $posicao = array_search($_POST["email"], array_column($usuariodec,"email"));
 
 if
-(password_verify($_POST["senha"], $usuariodec[$posicao]["email"]))
+(password_verify($_POST["senha"], $usuariodec[$posicao]["senha"]))
 { 
+	$_SESSION["ok"] = true;
 	header("Location:indexProduto.php");
+	
 } else{
 	echo "senha inválida";
+}
 }
 
 
@@ -30,7 +37,7 @@ if
 </head>
 <body>
 <nav class="navbar navbar-dar" style="background-color: black; color: white"><h4>
-   Desafio PHP/>
+&lt;Desafio PHP/&gt;
 </h4>
 
 
@@ -48,7 +55,7 @@ if
 
 					<div class="form-group">
 						<label for="nome">E-mail</label>
-						<input type="text" class="form-control <?= $nomeOK ? '' : 'is-invalid'; ?>" id="usuario" name="usuario" placeholder="usuario" required>
+						<input type="text" class="form-control <?= $nomeOK ? '' : 'is-invalid'; ?>" id="email" name="email" placeholder="usuario" required>
 						<div class="invalid-feedback">Digite um E-mail válido</div>
 					</div>
 

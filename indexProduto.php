@@ -1,5 +1,10 @@
 <?php
 
+session_start();
+if (empty ($_SESSION)){
+  header("Location:login.php");exit;
+}
+
 $produto = file_get_contents('produtos.json');
 
 $produtodec = json_decode($produto, true);

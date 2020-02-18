@@ -114,7 +114,7 @@ if(isset($_POST["excluir"])){
 
 					<div class="form-group">
 						<label for="nome">Nome:</label>
-						<input type="text" class="form-control <?= $nomeOK ? '' : 'is-invalid'; ?>" id="usuario" name="nome" placeholder="Nome" required>
+						<input type="text" class="form-control <?= $nomeOK ? '' : 'is-invalid'; ?>" id="usuario" name="nome" placeholder="Nome" minlength="2" required>
 						<div class="invalid-feedback">Digite um nome válido</div>
 					</div>
 

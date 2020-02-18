@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
-<a class="navbar-brand" href=#> < Desafio PHP/> </a>
+<a class="navbar-brand" href=#>&lt;Desafio PHP/&gt;</a>
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -17,7 +17,7 @@
       </li>
     </ul>
     <div class="navbar-nav">
-      <a class="nav-link" type="submit">Logout</a>
+      <a class="nav-link" type="submit" href="logout.php">Logout</a>
 </div>
   </div>
 </nav>
